@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script>
+      if (localStorage.getItem("role") == 2) {
+        location.assign("Admin.html");
+      } else if (localStorage.getItem("role") == 1) {
+        location.assign("security.html");
+      } else if (localStorage.getItem("role") == 0) {
+        location.assign("employee.html");
+      }
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        font-family: sans-serif;
+      }
+      body {
+        height: 80vh;
+        background: #e1edf9;
+      }
+      .form_container {
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+      }
+      .heading {
+        text-align: center;
+        font-size: 2rem;
+      }
+    </style>
+    <script src="../js/login.js"></script>
+  </head>
+  <body>
+    <div class="container py-4">
+      <div class="row pt-5 ps-3 justify-content-center align-items-center">
+        <div class="col-12 col-md-6 my-4 mx-6">
+          <div class="heading bg-primary text-light my-3 px-3 py-4">
+            <h2>Login Page</h2>
+          </div>
+          <div class="form_container bg-light my-3 px-3 py-1">
+            <form action="" method="post" id="loginForm">
+              <div class="my-1">
+                <label for="userName">User Name:</label>
+                <input type="text" class="form-control" id="userName" placeholder="Enter user name here" name="userName" />
+              </div>
+              <div class="my-1">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" />
+              </div>
+              <div class="my-3">
+                <button type="submit" class="btn btn-primary mx-1">Login</button>
+
+                <span style="color: red" id="userPassError"></span>
+              </div>
+              <center><a href="RegisterForm.html" class="link-secondary">don't have a username</a></center>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-none d-md-block">
+            <img class="img-fluid" src="../photos/Personal data.gif" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

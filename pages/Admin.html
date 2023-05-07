@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../Dashboard/plugins/fontawesome-free/css/all.min.css" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../Dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="../Dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="../Dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" href="../css/daterangepicker.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../Dashboard//adminlte.min.css" />
+    <script>
+      if (localStorage.getItem("role") != 2) {
+        alert("You have no access");
+        history.back();
+        // location.assign("Login.html");
+      }
+    </script>
+    <style>
+      kbd:hover {
+        cursor: pointer;
+      }
+      #fixedSidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+      }
+      #fixedTopbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar d-none d-lg-block sidebar-dark-primary elevation-4" id="fixedSidebar">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+          <img src="../photos/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+          <span class="brand-text font-weight-light">Admin Page</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="../photos/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block" id="AdminName">Alaa Mandor</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+              <li class="nav-item" id="pending1">
+                <a href="#" class="nav-link">
+                  <p>Pending candidate</p>
+                </a>
+              </li>
+              <li class="nav-item" id="emp1">
+                <a href="#" class="nav-link">
+                  <p>Employees</p>
+                </a>
+              </li>
+              <li class="nav-item" id="daily1">
+                <a href="#" class="nav-link">
+                  <p>Daily report</p>
+                </a>
+              </li>
+              <li class="nav-item" id="monthly1">
+                <a href="#" class="nav-link">
+                  <p>Monthly report</p>
+                </a>
+              </li>
+              <li class="nav-item" id="Logout1">
+                <a href="#" class="nav-link">
+                  <p>Log out</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Navbar-->
+        <nav style="visibility: hidden" class="main-header navbar navbar-expand navbar-white navbar-light">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" data-widget="control-sidebar" data-slide="false" href="#" role="button">
+                <i></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <aside class="d-lg-none sidebar-dark-primary" id="fixedTopbar">
+              <!-- Brand Logo -->
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex" data-widget="treeview" role="menu" data-accordion="false">
+                  <!-- Add icons to the links using the .nav-icon class
+                   with font-awesome or any other icon font library -->
+                  <li class="nav-item" id="pending2">
+                    <a href="#" class="nav-link">
+                      <p>Pending candidate</p>
+                    </a>
+                  </li>
+                  <li class="nav-item" id="emp2">
+                    <a href="#" class="nav-link">
+                      <p>Employees</p>
+                    </a>
+                  </li>
+                  <li class="nav-item" id="daily2">
+                    <a href="#" class="nav-link">
+                      <p>Daily report</p>
+                    </a>
+                  </li>
+                  <li class="nav-item" id="monthly2">
+                    <a href="#" class="nav-link">
+                      <p>Monthly report</p>
+                    </a>
+                  </li>
+                  <li class="nav-item" id="Logout2">
+                    <a href="#" class="nav-link">
+                      <p>Log out</p>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- /.sidebar-menu -->
+              <!-- </div> -->
+              <!-- /.sidebar -->
+            </aside>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="card" id="card1">
+                  <div class="card-header">
+                    <h3 class="card-title">DataTable with pending candidate</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Age</th>
+                          <th>Position</th>
+                          <th>Confirm</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <div class="card" id="card2">
+                  <div class="card-header">
+                    <h3 class="card-title">DataTable with employees</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="example3" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Age</th>
+                          <th>Position</th>
+                          <th>delete</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <div class="card" id="card3">
+                  <div class="card-header">
+                    <h3 class="card-title">DataTable with Daily report</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Full Name</th>
+                          <th>Date</th>
+                          <th>Arrival Time</th>
+                          <th>Departure Time</th>
+                          <th>Late</th>
+                          <th>Leave early today</th>
+                          <th>Absence</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <div class="card" id="card4">
+                  <div class="card-header">
+                    <h3 class="card-title">DataTable with Monthly Report</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Date range:</label>
+
+                      <input type="text" id="reservation" />
+                      <!-- /.input group -->
+                    </div>
+                    <table id="example4" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Full Name</th>
+                          <th>ِAttended</th>
+                          <th>Late</th>
+                          <th>Excuse</th>
+                          <th>Date</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../Dashboard/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../Dashboard/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../Dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../Dashboard/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+
+    <script src="../js/select2.full.min.js"></script>
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/daterangepicker.js"></script>
+    <script src="../Dashboard/js/adminlte.min.js"></script>
+    <script src="../js/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("D26hJwCCoEZXvqOub");
+      })();
+    </script>
+    <script defer src="../js/admin.js"></script>
+
+    <!-- Page specific script -->
+    <script>
+      $(function () {
+        $("#reservation").daterangepicker();
+      });
+    </script>
+  </body>
+</html>
